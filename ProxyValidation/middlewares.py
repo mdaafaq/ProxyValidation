@@ -85,7 +85,7 @@ class ProxyvalidationDownloaderMiddleware(object):
         gateway = useProxy
         user = useProxy + '_USER'
         pwd = useProxy + '_PASS'
-        request.meta['proxy'] = crawler.settings.get(user):crawler.settings.get(pwd)@crawler.settings.get(gateway)
+        request.meta['proxy'] = '{}:{}@{}'.format(self.crawler.get(user), self.crawler.get(pwd), self.crawler.get(gateway))
 
 
     def process_response(self, request, response, spider):
