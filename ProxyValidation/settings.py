@@ -9,6 +9,8 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import os
+
 BOT_NAME = 'ProxyValidation'
 
 SPIDER_MODULES = ['ProxyValidation.spiders']
@@ -54,8 +56,8 @@ ROBOTSTXT_OBEY = True
 # For example below
 
 LMTRES = 'zproxy.lum-superproxy.io:22225'
-LMTRES_USER = ''
-LMTRES_PASS = ''
+LMTRES_USER = os.getenv('LMTRES_USER', '')
+LMTRES_PASS = os.getenv('LMTRES_PASS', '')
 
 
 LMTDC = 'zproxy.lum-superproxy.io:22225'

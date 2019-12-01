@@ -81,11 +81,14 @@ class ProxyvalidationDownloaderMiddleware(object):
         # - or return a Request object
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
-        useProxy = spider.useProxy
-        gateway = useProxy
-        user = useProxy + '_USER'
-        pwd = useProxy + '_PASS'
-        request.meta['proxy'] = '{}:{}@{}'.format(self.crawler.get(user), self.crawler.get(pwd), self.crawler.get(gateway))
+        #useProxy = spider.useProxy
+        if hasattr(spider, 'useProxy'):
+            useProxy = spider.useProxy
+            gateway = useProxy
+            user = useProxy + '_USER'
+            pwd = useProxy + '_PASS'
+            request.meta['proxy'] = '{}:{}@{}'.format(self.crawler.get(user), self.crawler.get(pwd), self.crawler.get(gateway))
+        else: return None
 
 
     def process_response(self, request, response, spider):

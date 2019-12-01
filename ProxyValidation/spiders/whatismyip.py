@@ -5,9 +5,19 @@ class WhatIsMyIp(scrapy.Spider):
 
     # get proxy name from settings
     useProxy = 'LMTRES'
-    start_urls = ['https://www.showmyipaddress.eu/']
+
+    start_urls = ['https://www.whatismyip.com/',
+            'https://www.whatismyip.com/',
+            'https://www.whatismyip.com/',
+            'https://www.whatismyip.com/',
+            'https://www.whatismyip.com/',
+            'https://www.whatismyip.com/',
+            'https://www.whatismyip.com/',
+            'https://www.whatismyip.com/',
+            'https://www.whatismyip.com/',
+            'https://www.whatismyip.com/']
 
     def parse(self, response):
-        ip_address = response.css('div.text-center > div ::text').extract_first()
+        ip_address = response.xpath("//ul[contains(@class, 'list-group')]/li/text()").iextract_first()
         yield {'--------- My ip is -------- ' : ip_address}
 
