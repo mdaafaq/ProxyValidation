@@ -87,7 +87,8 @@ class ProxyvalidationDownloaderMiddleware(object):
             gateway = useProxy
             user = useProxy + '_USER'
             pwd = useProxy + '_PASS'
-            request.meta['proxy'] = '{}:{}@{}'.format(self.crawler.get(user), self.crawler.get(pwd), self.crawler.get(gateway))
+            request.meta['proxy'] = '{}'.format(self.crawler.get(gateway))
+            request.headers['Proxy-Authorization'] = basic_auth_header(self.crawler.get(user), self.crawler.get(pwd))
         else: return None
 
 

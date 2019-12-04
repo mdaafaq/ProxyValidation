@@ -18,6 +18,6 @@ class WhatIsMyIp(scrapy.Spider):
             'https://www.whatismyip.com/']
 
     def parse(self, response):
-        ip_address = response.xpath("//ul[contains(@class, 'list-group')]/li/text()").iextract_first()
+        ip_address = response.xpath("//ul[contains(@class, 'list-group')]/li/text()").extract()
         yield {'--------- My ip is -------- ' : ip_address}
 
